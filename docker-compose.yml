@@ -2,18 +2,16 @@ version: '3'
 
 services:
   influxsrv:
-      image: registry.docker-cn.com/tutum/influxdb:0.8.8-staging
+      image: registry.docker-cn.com/tutum/influxdb:0.8.8
       ports:
           - "8083:8083"
           - "8086:8086"
-      expose:
-          - "8086"
-          - "8090"
-          - "8099"
       environment:
           - PRE_CREATE_DB=cadvisor
       deploy:
         replicas: 1
+      networks:
+      - redis
 
   cadvisor:
       image: registry.docker-cn.com/google/cadvisor:latest
@@ -29,6 +27,8 @@ services:
           - influxsrv:influxsrv
       deploy:
         replicas: 2
+      networks:
+        - redis
 
   tasseo:
       image: registry.int.mimikko.cn/tasseo:latest
@@ -41,7 +41,8 @@ services:
           - INFLUXDB_AUTH=root:root
       deploy:
         replicas: 1
-
+      networks:
+        - redis
 networks:
   redis:
     external: true
