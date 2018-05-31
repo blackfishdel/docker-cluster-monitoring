@@ -17,3 +17,6 @@ This will run:
 
 
 iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
+
+
+docker stack deploy -c docker-compose.yml monitor

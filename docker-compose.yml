@@ -3,6 +3,7 @@ version: '3'
 services:
   influxsrv:
       image: registry.docker-cn.com/tutum/influxdb:0.8.8
+      hostname: influxdb
       ports:
           - "8083:8083"
           - "8086:8086"
@@ -23,8 +24,6 @@ services:
           - /var/run:/var/run:rw
           - /sys:/sys:ro
           - /var/lib/docker:/var/lib/docker:ro
-      links:
-          - influxsrv:influxsrv
       deploy:
         replicas: 2
       networks:
@@ -34,8 +33,6 @@ services:
       image: registry.int.mimikko.cn/tasseo:latest
       ports:
           - "5000:5000"
-      links:
-          - influxsrv:influxsrv
       environment:
           - INFLUXDB_URL=http://influxsrv:8086/db/cadvisor
           - INFLUXDB_AUTH=root:root
