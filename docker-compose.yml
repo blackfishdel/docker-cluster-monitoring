@@ -9,6 +9,7 @@ services:
           - "8086:8086"
       environment:
           - PRE_CREATE_DB=cadvisor
+          - "com.mimikko.environment=c1"
       deploy:
         replicas: 1
       networks:
@@ -40,6 +41,7 @@ services:
         replicas: 1
       networks:
         - redis
+
 networks:
   redis:
     external: true

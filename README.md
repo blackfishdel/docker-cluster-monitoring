@@ -16,7 +16,9 @@ This will run:
 - tasseo on `5000` with a few dashboards.
 
 
-iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
 
 
 docker stack deploy -c docker-compose.yml monitor
+
+DOCKER_OPTS="$DOCKER_OPTS --label com.mimikko.environment='c1' "
