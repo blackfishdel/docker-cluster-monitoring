@@ -1,4 +1,4 @@
-FROM  ruby:2.1-slim
+FROM  registry.docker-cn.com/library/ruby:2.1-slim
 MAINTAINER del xie
 
 RUN apt-get update -y && apt-get install git build-essential -y

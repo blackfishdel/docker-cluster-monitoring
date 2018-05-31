@@ -14,3 +14,6 @@ This will run:
 - 2 cAdvisor containers on ports `8080` & `8081`
 - InfluxDB on `8083`, username & password of `root`
 - tasseo on `5000` with a few dashboards.
+
+
+iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
