@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  tasseo:
+      image: registry.int.mimikko.cn/tasseo:latest
+      ports:
+          - "5000:5000"
+      environment:
+          - INFLUXDB_URL=http://influxsrv:8086/db/cadvisor
+          - INFLUXDB_AUTH=root:root
+          - "com.mimikko.environment=c1"
+      deploy:
+        replicas: 1
+      networks:
+        - redis
+
   influxsrv:
       image: registry.docker-cn.com/tutum/influxdb:0.8.8
       hostname: influxdb
@@ -26,19 +39,6 @@ services:
           - /var/lib/docker:/var/lib/docker:ro
       deploy:
         replicas: 2
-      networks:
-        - redis
-
-  tasseo:
-      image: registry.int.mimikko.cn/tasseo:latest
-      ports:
-          - "5000:5000"
-      environment:
-          - INFLUXDB_URL=http://influxsrv:8086/db/cadvisor
-          - INFLUXDB_AUTH=root:root
-          - "com.mimikko.environment=c1"
-      deploy:
-        replicas: 1
       networks:
         - redis
 
