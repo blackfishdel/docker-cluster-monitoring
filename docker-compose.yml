@@ -9,7 +9,6 @@ services:
           - "8086:8086"
       environment:
           - PRE_CREATE_DB=cadvisor
-          - "com.mimikko.environment=c1"
       deploy:
         replicas: 1
       networks:
@@ -37,6 +36,7 @@ services:
       environment:
           - INFLUXDB_URL=http://influxsrv:8086/db/cadvisor
           - INFLUXDB_AUTH=root:root
+          - "com.mimikko.environment=c1"
       deploy:
         replicas: 1
       networks:
