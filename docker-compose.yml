@@ -6,7 +6,7 @@ services:
       ports:
           - "9000:5000"
       environment:
-          - INFLUXDB_URL=http://influxsrv:8086/db/cadvisor
+          - INFLUXDB_URL=http://http://42.159.144.148:9001/db/cadvisor
           - INFLUXDB_AUTH=root:root
           - "com.mimikko.environment=c1"
       deploy:
@@ -19,9 +19,10 @@ services:
       hostname: influxdb
       ports:
           - "8083:8083"
-          - "8086:8086"
+          - "9001:8086"
       environment:
           - PRE_CREATE_DB=cadvisor
+          - "com.mimikko.environment=c1"
       deploy:
         replicas: 1
       networks:
