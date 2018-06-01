@@ -18,7 +18,16 @@ This will run:
 
 sudo iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
 
+sudo iptables -A OUTPUT -p tcp --sport 9000 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 9000 -j ACCEPT
+
+sudo iptables -D OUTPUT 1
 
 docker stack deploy -c docker-compose.yml monitor
 
 DOCKER_OPTS="$DOCKER_OPTS --label com.mimikko.environment='c1' "
+
+
+http://42.159.144.148:9000/influx-cadvisor
+
+http://localhost:9000/influx-cadvisor
