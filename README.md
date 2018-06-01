@@ -20,7 +20,7 @@ sudo iptables -A OUTPUT -p tcp --sport 5000 -j ACCEPT
 
 sudo iptables -A OUTPUT -p tcp --sport 9000 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 9000 -j ACCEPT
-
+sudo iptables -A INPUT -p tcp --dport 9001 -j ACCEPT
 sudo iptables -D OUTPUT 1
 
 docker stack deploy -c docker-compose.yml monitor

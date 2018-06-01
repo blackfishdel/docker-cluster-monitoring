@@ -6,7 +6,7 @@ services:
       ports:
           - "9000:5000"
       environment:
-          - INFLUXDB_URL=http://http://42.159.144.148:9001/db/cadvisor
+          - INFLUXDB_URL=http://42.159.145.121:9001/db/cadvisor
           - INFLUXDB_AUTH=root:root
           - "com.mimikko.environment=c1"
       deploy:
